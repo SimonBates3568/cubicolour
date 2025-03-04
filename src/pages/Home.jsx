@@ -2,6 +2,7 @@ import { Blockquote } from "../components/ui/blockquote.jsx";
 import { HamburgerIcon, SunIcon, MoonIcon } from "@chakra-ui/icons";
 import { useColorMode } from "@chakra-ui/react";
 import { FaReact, FaNodeJs, FaCss3Alt, FaHtml5 } from "react-icons/fa";
+import { keyframes } from "@emotion/react";
 
 import {
   Box,
@@ -18,8 +19,13 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  Text,
 } from "@chakra-ui/react";
+
+// Define keyframes for the animation
+const spin = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`;
 
 const Home = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -62,6 +68,7 @@ const Home = () => {
         left={["10px", "20px", "30px"]}
         zIndex={0}
         borderRadius="full"
+        animation={`${spin} infinite 20s linear`} // Apply the animation
       />
       {/* Responsive Container for Icons */}
       <Box position="absolute" top={4} right={4} display="flex" gap={4} zIndex={1}>
@@ -86,7 +93,7 @@ const Home = () => {
           <DrawerHeader>Menu</DrawerHeader>
           <DrawerBody>
             <Button w="100%" mb={4} colorScheme="teal" onClick={() => window.location.href = "/portfolio"}>View Templates</Button>
-            <Button w="100%" mb={4} colorScheme="blue" onClick={() => window.location.href = "/contact"}>Get in Touch</Button>
+            <Button w="100%" mb={4} colorScheme="blue" onClick={() => window.location.href = "/con"}>Get in Touch</Button>
           </DrawerBody>
           <DrawerFooter>
             <Button variant="outline" mr={3} onClick={onClose}>
@@ -105,6 +112,7 @@ const Home = () => {
         <Button colorScheme="teal" variant="outline" size={["md", "lg"]} onClick={() => window.location.href = "/contact"}>Get in Touch</Button>
       </Stack>
       {/* Our Tech Stack Section */}
+      <Box mt={10} textAlign="center"></Box>
       <Box mt={10} textAlign="center">
         <Heading as="h2" size="xl" mb={4}>Our Tech Stack</Heading>
         <Stack direction="row" spacing={8} justifyContent="center">
@@ -117,5 +125,4 @@ const Home = () => {
     </Box>
   );
 };
-
 export default Home;
